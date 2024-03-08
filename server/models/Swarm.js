@@ -4,6 +4,7 @@ const swarmSchema = new Schema({
     location: {
     // Unsure of what datatype the location will be
         type: String,
+        required: true,
     },
     description: {
         type: String,
