@@ -3,15 +3,16 @@ const typeDefs = `
   type User {
     _id: ID!
     username: String!
+    password: String!
     email: String!
     zipcode: Int!
   }
 
   type Swarm {
     _id: ID!
-    location: [Float]
-    description: String
-    contactInfo: String
+    location: [Float]!
+    description: String!
+    contactInfo: String!
   }
 
   type Auth {
@@ -30,8 +31,8 @@ const typeDefs = `
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, zipcode: Int!): Auth
-    saveSwarm(location: String!, description: String!, contactInfo: String!): User
-    removeBook(userId: ID!, bookId: String!): User
+    addSwarm(location: String!, description: String!, contactInfo: String!): Swarm
+    removeSwarm(swarmId: ID!): Swarm
   }  
 `;
 
