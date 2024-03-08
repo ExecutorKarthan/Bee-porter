@@ -5,8 +5,14 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
   //Create a mechanism to query data from the database
   Query: {
-    me: async (parent, {userId}, context) => {
+    user: async (parent, {userId}, context) => {
       return User.findOne({_id: userId });
+    },
+  },
+
+  Query: {
+    swarm: async (parent, {swarmId}, context) => {
+      return User.findOne({_id: swarmId });
     },
   },
 
