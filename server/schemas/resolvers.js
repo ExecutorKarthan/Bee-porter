@@ -32,15 +32,15 @@ const resolvers = {
     },
     
     //Create a mutation to add a user and its token to the database
-    addUser: async (parent, { name, email, password }) => {
-      const user = await User.create({ name, email, password });
+    addUser: async (parent, { username, email, password, zipcode }) => {
+      const user = await User.create({ username, email, password, zipcode });
       const token = signToken(user);
       return { token, user };
     },
 
     // Add a third argument to the resolver to access data in our `context`
-    addSwarm: async (parent, {location, descrption, contactInfo}, context) => {
-      const user = await Swarm.create({ location, descrption, contactInfo });
+    addSwarm: async (parent, {location, description, contactInfo}, context) => {
+      const swarm = await Swarm.create({ location, description, contactInfo });
       return { swarm }
     },
     // Make it so a logged in user can only remove a skill from their own profile
