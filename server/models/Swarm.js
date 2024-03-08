@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const swarmSchema = new Schema({
     location: {
     // Unsure of what datatype the location will be
-        type: String,
+        type: Array,
         required: true,
     },
     description: {
