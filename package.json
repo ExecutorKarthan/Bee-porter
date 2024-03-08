@@ -1,0 +1,33 @@
+{
+  "name": "bee-porter",
+  "version": "1.0.0",
+  "description": "This is an app that helps beekeepers find wild swarms. Users can open the app and record their location to the database via a selection button. Beekeepers can then login and have access to where the swarms are.",
+  "main": "/server/server.js",
+  "scripts": {
+    "test": "run test",
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build",
+    "render-build": "npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ExecutorKarthan/Bee-porter.git"
+  },
+  "author": "Zach Elbring, Jared Fleshren, Gary Harris, Alex Messina, Katy Thompson, Jared Woodcock",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ExecutorKarthan/Bee-porter/issues"
+  },
+  "homepage": "https://github.com/ExecutorKarthan/Bee-porter#readme",
+  "dependencies": {
+    "@apollo/server": "^4.10.1",
+    "concurrently": "^8.2.2",
+    "express": "^4.18.3",
+    "graphql": "^16.8.1",
+    "mongoose": "^8.2.1",
+    "react": "^18.2.0",
+    "vite": "^5.1.5"
+  }
+}
