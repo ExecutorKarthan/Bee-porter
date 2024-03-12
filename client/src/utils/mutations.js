@@ -7,19 +7,21 @@ mutation login($email: String!, $password: String!) {
         user {
             _id
             email
-            username
+            firstName
+            lastName
         }
     }
 }`
 
 export const ADD_USER = gql`
-mutation addUser($username: String!, $email: String!, $password: String!, $zipcode: Int!) {
-    addUser(username: $username, email: $email, password: $password, zipcode: $zipcode) {
+mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $zipcode: Int!) {
+    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, zipcode: $zipcode) {
         token
         user {
             _id
             email
-            username
+            firstName
+            lastName
         }
     }
 }`
