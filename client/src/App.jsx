@@ -23,8 +23,6 @@ const client = new ApolloClient({
 function App() {
   const [count, setCount] = useState(0);
 
-
-function App() {
   return (
     <ApolloProvider client={client}>
 
