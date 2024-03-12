@@ -6,9 +6,10 @@ import { ADD_USER } from '../utils/mutations';
 
 function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
-  const [addUser] = useMutation(ADD_USER);
+  const [addUser, {error}] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
+    console.log("Submission clicked", formState)
     event.preventDefault();
     const mutationResponse = await addUser({
       variables: {
@@ -16,8 +17,10 @@ function Signup(props) {
         password: formState.password,
         firstName: formState.firstName,
         lastName: formState.lastName,
+        zipcode: parseInt(formState.zipcode)
       },
     });
+    console.log(mutationResponse)
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
   };
@@ -33,7 +36,6 @@ function Signup(props) {
   return (
     <div className="container my-1">
       <Link to="/login">← Go to Login</Link>
-
       <h2>Signup</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
@@ -73,6 +75,16 @@ function Signup(props) {
             name="password"
             type="password"
             id="pwd"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
+          <label htmlFor="zipcode">Zipcode:</label>
+          <input
+            placeholder="123456"
+            name="zipcode"
+            type="zipcode"
+            id="zip"
             onChange={handleChange}
           />
         </div>

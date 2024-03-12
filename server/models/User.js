@@ -23,6 +23,11 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
+  zipcode: {
+    type: Number,
+    required: true,
+    minlength: 5
+  },
 });
 
 // set up pre-save middleware to create password

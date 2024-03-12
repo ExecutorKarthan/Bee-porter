@@ -22,6 +22,7 @@ mutation addUser($firstName: String!, $lastName: String!, $email: String!, $pass
             email
             firstName
             lastName
+            zipcode
         }
     }
 }`

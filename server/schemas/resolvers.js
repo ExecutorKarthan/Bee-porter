@@ -38,8 +38,8 @@ const resolvers = {
     },
     
     //Create a mutation to add a user and its token to the database
-    addUser: async (parent, { username, email, password, zipcode }) => {
-      const user = await User.create({ username, email, password, zipcode });
+    addUser: async (parent, { firstName, lastName, email, password, zipcode }) => {
+      const user = await User.create({ firstName, lastName, email, password, zipcode });
       const token = signToken(user);
       return { token, user };
     },
