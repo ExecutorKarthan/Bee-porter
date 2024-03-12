@@ -13,7 +13,7 @@ import {
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-});
+}); 
 
 function App() {
   const [count, setCount] = useState(0);
