@@ -10,12 +10,14 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx">
+    <!--react components rendered-->
+    <div id="map" style="width: 100%; height: 400px;"></div>
+    <script type="module">
       import React from 'react';
       import ReactDOM from 'react-dom';
       import mapboxgl from 'mapbox-gl';
 
-      function MapComponent() {
+    function MapComponent() {
       React.useEffect(() => {
         mapboxgl.accessToken = 'pk.eyJ1IjoiamZsZXNocmVuIiwiYSI6ImNsdGkyaWRrbzBibHUyaXBuZ3pyOHlpczEifQ.gjpQJcw0X4BCo2d3HGttjQ';
         const map = new mapboxgl.Map({
@@ -30,7 +32,9 @@
       }, []);
        return <div id="map" style={{ width: '100%', height: '400px' }} />;
     }
+
     ReactDOM.render(<MapComponent />, document.getElementById('root'));
+
     </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
