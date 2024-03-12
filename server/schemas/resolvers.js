@@ -51,7 +51,7 @@ const resolvers = {
     },
     // Make it so a logged in user can only remove a skill from their own profile
     removeSwarm: async (parent, { swarmId }, context) => {
-      return await User.findOneAndDelete({_id: swarmId});
+      return await Swarm.findOneAndDelete({_id: swarmId});
       },
   },
 };

@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -5,11 +6,14 @@ import './App.css';
 import { Outlet } from 'react-router-dom';
 import Nav from './components/Nav';
 import MapComponent from './components/mapComponent';
+
+
 import {
   ApolloClient,
   ApolloProvider,
   InMemoryCache,
 } from '@apollo/client';
+
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -18,8 +22,11 @@ const client = new ApolloClient({
 function App() {
   const [count, setCount] = useState(0);
 
+
+function App() {
   return (
     <ApolloProvider client={client}>
+
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -43,6 +50,7 @@ function App() {
       </p>
       <Nav />
       <Outlet />
+
     </ApolloProvider>
   );
 }
