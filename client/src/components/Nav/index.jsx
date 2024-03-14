@@ -34,9 +34,9 @@ function Nav() {
 
   return (
     <header className="flex-row px-1">
-      <h1>
+      <h1 className="logo">
         <Link to="/">
-          Bee-porter
+          BEE-PORTER
         </Link>
       </h1>
 
