@@ -5,6 +5,7 @@ import {
   ApolloProvider,
   InMemoryCache,
 } from '@apollo/client';
+import MapComponent from './components/mapComponent';
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -14,6 +15,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
     <Nav />
+    <MapComponent /> 
     <Outlet />
     </ApolloProvider>
   );
