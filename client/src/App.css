@@ -4,6 +4,7 @@ body {
   background-color: #fbee5c; /* Bumblebee yellow */
   margin: 0;
   padding: 0;
+  text-align: center; /* Center align text */
 }
 
 .flex-row {
@@ -77,7 +78,7 @@ nav a:hover {
 }
 
 .input {
-  max-width: 300px;;
+  max-width: 300px;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
