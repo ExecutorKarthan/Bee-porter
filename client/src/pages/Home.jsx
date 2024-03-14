@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_SWARM } from '../utils/queries'; 
+import MapComponent from '../components/mapComponent'; 
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_SWARM, {
@@ -38,6 +39,7 @@ const Home = () => {
       <div className="row">
         <div className="col-md-8 offset-md-2 text-center mt-5">
           <h2>Ready to report a new bee swarm?</h2>
+          <MapComponent />
           <Link to="/report">
             <button className="btn btn-lg btn-primary">Report Bee Swarm</button>
           </Link>
