@@ -9,7 +9,6 @@ function Signup(props) {
   const [addUser, {error}] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
-    console.log("Submission clicked", formState)
     event.preventDefault();
     const mutationResponse = await addUser({
       variables: {

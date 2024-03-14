@@ -8,6 +8,7 @@ import {
 import MapComponent from './components/mapComponent';
 
 const client = new ApolloClient({
+  uri: '/graphql',
   cache: new InMemoryCache(),
 });
 
