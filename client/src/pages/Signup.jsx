@@ -101,9 +101,11 @@ function Signup(props) {
               <p className="error-text">The provided credentials are incorrect</p>
             </div>
           ) : null}
-          <div className="flex-row flex-end">
-            <button type="submit" className="button">Submit</button>
+          <div className="container">
+		      <div className="text-center">
+          <button type="submit" className="button">Submit</button>
           </div>
+        </div>
         </form>
       </div>
     </div>
