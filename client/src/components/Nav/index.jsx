@@ -42,6 +42,7 @@ function Nav() {
 
       <nav>
         {showNavigation()}
+        <img src="/assets/Bee-Logo.png " className="bee-logo-img"/> 
       </nav>
     </header>
   );
