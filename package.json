@@ -23,6 +23,8 @@
   "homepage": "https://github.com/ExecutorKarthan/Bee-porter#readme",
   "dependencies": {
     "@apollo/server": "^4.10.1",
+    "@stripe/react-stripe-js": "^2.6.0",
+    "@stripe/stripe-js": "^3.0.8",
     "bcrypt": "^5.1.1",
     "concurrently": "^8.2.2",
     "dotenv": "^16.4.5",
@@ -33,6 +35,7 @@
     "mapbox-gl": "^3.2.0",
     "mongoose": "^8.2.1",
     "react": "^18.2.0",
+    "stripe": "^14.21.0",
     "vite": "^5.1.5"
   }
 }
