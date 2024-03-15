@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl';
 const MapComponent = () => {
     const [map, setMap] = useState(null);
     const [selectedMarker, setSelectedMarker] = useState(null);
+    const [markers, setMarkers] = useState([]);
 
     useEffect(() => {
         mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
@@ -22,18 +23,6 @@ const MapComponent = () => {
                     zoom: 9 // starting zoom
                 });
                 setMap(newMap);
-                const marker = new mapboxgl.Marker({
-                    draggable: true,
-                    // Add custom image URL here
-                    iconUrl: '/assets/Bee-porter marker img.jpg'
-
-                })
-                .setLngLat([longitude, latitude]) // Marker position
-                .addTo(newMap); // Add marker to the map
-
-                marker.getElement().addEventListener('click', () => {
-                    setSelectedMarker(marker);
-                });
 
                 return () => {
                     newMap.remove();
@@ -49,20 +38,32 @@ const MapComponent = () => {
         if (map) {
             // Get current coordinates of the center of the map
             const center = map.getCenter();
+
+            const iconElement = document.createElement('div');
+            iconElement.className = 'custom-marker';
+            iconElement.style.backgroundImage = 'url(/assets/Bee-porter marker img.jpg)';
+            iconElement.style.width = '25px'; 
+            iconElement.style.height = '25px'; 
             // Add marker at the current coordinates
-            const newMarker = new mapboxgl.Marker()
-                .setLngLat([center.lng, center.lat])
-                .addTo(map);
+            const newMarker = new mapboxgl.Marker({
+            draggable: true,
+            element: iconElement
+        })
+        .setLngLat([center.lng, center.lat])
+        .addTo(map);
+
             //click marker to display info
             newMarker.getElement().addEventListener('click', () => {
                 setSelectedMarker(newMarker);
             });
+            setMarkers([...markers, newMarker]);
         }
     };
         const handleRemoveMarker = () => {
             if (selectedMarker) {
                 selectedMarker.remove();
                 setSelectedMarker(null);
+                setMarkers(markers.filter(marker => marker !== selectedMarker));
             }
         };
 
