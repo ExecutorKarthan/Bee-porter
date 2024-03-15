@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_SWARM } from '../utils/queries'; 
-import MapComponent from '../components/mapComponent'; 
+import { QUERY_SWARM } from '../utils/queries';
+import MapComponent from '../components/mapComponent';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_SWARM, {
-    fetchPolicy: "no-cache"
+    fetchPolicy: 'no-cache'
   });
 
   const swarmList = data?.swarms || [];
@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div className="container">
       <div className="jumbotron text-center">
-        <h1>Welcome to Bee Porter!</h1>
+        <h1 className="heading">Welcome to Bee Porter!</h1>
         <p>Track and report bee swarms in your area.</p>
       </div>
       <div className="row">
@@ -25,8 +25,8 @@ const Home = () => {
             <ul className="list-group">
               {swarmList.map((swarm) => {
                 return (
-                  <li key={swarm._id} className="list-group-item">
-                    <Link to={{ pathname: `/swarm/${swarm._id}` }}>
+                  <li key={swarm._id} className="list-item">
+                    <Link to={{ pathname: `/swarm/${swarm._id}` }} className="link">
                       {swarm.location} - {swarm.date}
                     </Link>
                   </li>
@@ -40,8 +40,8 @@ const Home = () => {
         <div className="col-md-8 offset-md-2 text-center mt-5">
           <h2>Ready to report a new bee swarm?</h2>
           <MapComponent />
-          <Link to="/report">
-            <button className="btn btn-lg btn-primary">Report Bee Swarm</button>
+          <Link to="/report" className="link">
+            <button className="button">Report Bee Swarm</button>
           </Link>
         </div>
       </div>

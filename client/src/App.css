@@ -1,42 +1,104 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* General styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fbee5c; /* Bumblebee yellow */
+  margin: 0;
+  padding: 0;
+  text-align: center; /* Center align text */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mx-1 {
+  margin: 0 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Navigation styles */
+header {
+  background-color: #2e2e2e; /* Dark gray */
+  color: white;
+  padding: 1rem;
 }
 
-.card {
-  padding: 2em;
+.logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
 }
 
-.read-the-docs {
-  color: #888;
+.logo a:hover {
+  color: #fbee5c; /* Bumblebee yellow */
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+}
+
+nav li {
+  margin: 0 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+nav a:hover {
+  color: #fbee5c; /* Bumblebee yellow */
+}
+
+/* Login page styles */
+.link {
+  color: #646cff; /* Bumblebee blue */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.heading {
+  color: #2e2e2e; /* Dark gray */
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.input {
+  max-width: 300px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.error-text {
+  color: #ff0000; /* Red */
+}
+
+.button {
+  background-color: #646cff; /* Bumblebee blue */
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.button:hover {
+  background-color: #535bf2; /* Darker blue on hover */
 }
