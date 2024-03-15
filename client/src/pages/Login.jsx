@@ -38,7 +38,7 @@ function Login(props) {
       <h2 className="heading">Login</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="form-group">
-          <label htmlFor="email">Email address:</label>
+          <label htmlFor="email">Email address: </label>
           <input
             className="input"
             placeholder="youremail@test.com"
@@ -49,7 +49,7 @@ function Login(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="pwd">Password:</label>
+          <label htmlFor="pwd">Password: </label>
           <input
             className="input"
             placeholder="******"
