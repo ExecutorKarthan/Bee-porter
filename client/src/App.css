@@ -110,3 +110,13 @@ nav a:hover {
   width: 150px;
   height: auto; /* Maintain aspect ratio */
 }
+
+.heading{
+  background-color: #2e2e2e;
+  color: white;
+}
+
+button{
+  margin: 5px;
+  background-color: #2e2e2e !important;
+}

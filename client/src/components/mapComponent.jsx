@@ -3,6 +3,8 @@ import mapboxgl from 'mapbox-gl';
 
 const MapComponent = () => {
     const [map, setMap] = useState(null);
+    const [selectedMarker, setSelectedMarker] = useState(null);
+    const [markers, setMarkers] = useState([]);
 
     useEffect(() => {
         mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
@@ -16,19 +18,11 @@ const MapComponent = () => {
                 const { latitude, longitude } = position.coords;
                 const newMap = new mapboxgl.Map({
                     container: 'map',
-                    style: 'mapbox://styles/mapbox/streets-v11',
+                    style: 'mapbox://styles/mapbox/dark-v11',
                     center: [longitude, latitude], // Set map to center on user's location
                     zoom: 9 // starting zoom
                 });
                 setMap(newMap);
-                const marker = new mapboxgl.Marker({
-                    color: '#FF0000',
-                    draggable: true,
-                    // Add custom image URL here
-                    iconUrl: 'IMG URL HERE'
-                })
-                .setLngLat([longitude, latitude]) // Marker position
-                .addTo(newMap); // Add marker to the map
 
                 return () => {
                     newMap.remove();
@@ -44,17 +38,47 @@ const MapComponent = () => {
         if (map) {
             // Get current coordinates of the center of the map
             const center = map.getCenter();
+
+            const iconElement = document.createElement('div');
+            iconElement.className = 'custom-marker';
+            iconElement.style.backgroundImage = 'url(/assets/Bee-porter marker img.jpg)';
+            iconElement.style.width = '25px'; 
+            iconElement.style.height = '25px'; 
             // Add marker at the current coordinates
-            new mapboxgl.Marker()
-                .setLngLat([center.lng, center.lat])
-                .addTo(map);
+            const newMarker = new mapboxgl.Marker({
+            draggable: true,
+            element: iconElement
+        })
+        .setLngLat([center.lng, center.lat])
+        .addTo(map);
+
+            //click marker to display info
+            newMarker.getElement().addEventListener('click', () => {
+                setSelectedMarker(newMarker);
+            });
+            setMarkers([...markers, newMarker]);
         }
     };
+        const handleRemoveMarker = () => {
+            if (selectedMarker) {
+                selectedMarker.remove();
+                setSelectedMarker(null);
+                setMarkers(markers.filter(marker => marker !== selectedMarker));
+            }
+        };
 
     return (
         <div>
             <div id="map" style={{ width: '100%', height: '400px' }} />
-            <button onClick={handleMarkLocation}>Mark Location</button>
+            <button className="button" onClick={handleMarkLocation}>Mark Location</button>
+            {selectedMarker && (
+                <div className="marker-card">
+                    <h3>Marker Info</h3>
+                    <p>Latitude: {selectedMarker.getLngLat().lat}</p>
+                    <p>Longitude: {selectedMarker.getLngLat().lng}</p>
+                    <button className="button" onClick={handleRemoveMarker}>Remove Marker</button>
+                </div>
+            )}
         </div>
     );
 };
