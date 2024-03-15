@@ -69,13 +69,13 @@ const MapComponent = () => {
     return (
         <div>
             <div id="map" style={{ width: '100%', height: '400px' }} />
-            <button onClick={handleMarkLocation}>Mark Location</button>
+            <button className="button" onClick={handleMarkLocation}>Mark Location</button>
             {selectedMarker && (
                 <div className="marker-card">
                     <h3>Marker Info</h3>
                     <p>Latitude: {selectedMarker.getLngLat().lat}</p>
                     <p>Longitude: {selectedMarker.getLngLat().lng}</p>
-                    <button onClick={handleRemoveMarker}>Remove Marker</button>
+                    <button className="button" onClick={handleRemoveMarker}>Remove Marker</button>
                 </div>
             )}
         </div>

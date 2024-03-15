@@ -102,3 +102,13 @@ nav a:hover {
 .button:hover {
   background-color: #535bf2; /* Darker blue on hover */
 }
+
+.heading{
+  background-color: #2e2e2e;
+  color: white;
+}
+
+button{
+  margin: 5px;
+  background-color: #2e2e2e !important;
+}

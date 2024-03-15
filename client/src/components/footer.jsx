@@ -8,7 +8,7 @@ export default function Footer() {
         </div>
       </div>
       <form action="http://localhost:4242/create-checkout-session" method="POST">
-        <button type="submit">Donate Here</button>
+        <button type="submit" className="button">Donate Here</button>
       </form>
     </section>
   );
