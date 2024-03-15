@@ -23,10 +23,10 @@ const MapComponent = () => {
                 });
                 setMap(newMap);
                 const marker = new mapboxgl.Marker({
-                    color: '#FF0000',
                     draggable: true,
                     // Add custom image URL here
-                    iconUrl: 'IMG URL HERE'
+                    iconUrl: '/assets/Bee-porter marker img.jpg'
+
                 })
                 .setLngLat([longitude, latitude]) // Marker position
                 .addTo(newMap); // Add marker to the map
