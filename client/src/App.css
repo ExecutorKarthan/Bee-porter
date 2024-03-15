@@ -107,3 +107,8 @@ nav a:hover {
   background-color: #2e2e2e;
   color: white;
 }
+
+button{
+  margin: 5px;
+  background-color: #2e2e2e !important;
+}
