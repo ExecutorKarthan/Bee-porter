@@ -5,7 +5,7 @@
   "main": "/server/server.js",
   "scripts": {
     "test": "run test",
-    "start": "node server/server.js",
+    "start": "cd client && npm run build",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
