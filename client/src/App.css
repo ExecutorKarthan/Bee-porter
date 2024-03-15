@@ -9,7 +9,6 @@ body {
 
 .flex-row {
   display: flex;
-  flex-direction: row;
   align-items: center;
   list-style: none;
 }
@@ -23,6 +22,9 @@ header {
   background-color: #2e2e2e; /* Dark gray */
   color: white;
   padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo a {
@@ -101,6 +103,12 @@ nav a:hover {
 
 .button:hover {
   background-color: #535bf2; /* Darker blue on hover */
+}
+
+/* Logo image */
+.bee-logo-img {
+  width: 150px;
+  height: auto; /* Maintain aspect ratio */
 }
 
 .heading{
