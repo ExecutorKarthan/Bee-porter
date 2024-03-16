@@ -4,7 +4,11 @@ import App from './App.jsx'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+
 import Profile from './pages/Profile.jsx';
+
+import Success from './pages/Success';
+
 import './App.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -28,9 +32,14 @@ const router = createBrowserRouter([
               element: <Signup />
           },
           {
+
             path: "/profile",
             element: <Profile />
-          }
+          },
+          {
+            path: '/success',
+            element: <Success />
+          },
       ]
   }
 ]);

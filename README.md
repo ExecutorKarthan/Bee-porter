@@ -4,10 +4,10 @@
 This is a web application that allows users to add locations of wild bee swarms so beekeepers can come and collect the swarm. Users can view a map of their location and add pins to where they find swarms of bees. Users can also sign up or login to their account.
 
 ## Installation
-This project is deployed to Render, so it does not require any installation to run.
+This project is deployed to Netlify, so it does not require any installation to run.
 
 ## Usage
-A user can navigate to [https://bee-porter.onrender.com](https://bee-porter.onrender.com). From there, the user can have the web experience of the app. 
+A user can navigate to [https://bee-porter.netlify.app/](https://bee-porter.netlify.app/). From there, the user can have the web experience of the app. 
 
 ## License
 ![License: MIT License](https://img.shields.io/badge/License-MIT-red)

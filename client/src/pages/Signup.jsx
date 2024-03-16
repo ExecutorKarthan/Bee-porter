@@ -11,6 +11,7 @@ function Signup(props) {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log(formState);
       const {data} = await addUser({
         variables: {
           email: formState.email,
@@ -42,7 +43,7 @@ function Signup(props) {
         <h2 className="heading">Signup</h2>
         <form onSubmit={handleFormSubmit}>
           <div className="form-group">
-            <label htmlFor="firstName">First Name:</label>
+            <label htmlFor="firstName">First Name: </label>
             <input
               placeholder="First"
               name="firstName"
@@ -53,7 +54,7 @@ function Signup(props) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="lastName">Last Name:</label>
+            <label htmlFor="lastName">Last Name: </label>
             <input
               placeholder="Last"
               name="lastName"
@@ -64,7 +65,7 @@ function Signup(props) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Email: </label>
             <input
               placeholder="youremail@test.com"
               name="email"
@@ -75,7 +76,7 @@ function Signup(props) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="pwd">Password:</label>
+            <label htmlFor="pwd">Password: </label>
             <input
               placeholder="******"
               name="password"
@@ -86,7 +87,7 @@ function Signup(props) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="zipcode">Zipcode:</label>
+            <label htmlFor="zipcode">Zipcode: </label>
             <input
               placeholder="123456"
               name="zipcode"
@@ -101,9 +102,11 @@ function Signup(props) {
               <p className="error-text">The provided credentials are incorrect</p>
             </div>
           ) : null}
-          <div className="flex-row flex-end">
-            <button type="submit" className="button">Submit</button>
-          </div>
+          <div className="container">
+		      <div className="text-center">
+          <button type="submit" className="button">Submit</button>
+		      </div>
+        </div>
         </form>
       </div>
     </div>
