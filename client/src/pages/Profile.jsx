@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
-import { QUERY_USER } from '../utils/queries';
-import { useQuery } from '@apollo/client';
 import  Auth  from '../utils/auth';
 
 const Profile = () => {
+    // try{
     const token = Auth.getToken();
-    const userData = Auth.getUser(token)
-    console.log(userData)
+    if(!token){
+        window.location.assign("/login")
+    }
+    else{
+        console.log(token)
+        const userData = Auth.getUser(token)
+        console.log(userData)
+    }
     return (
         <>
         <Link to="/">Back to home</Link>   

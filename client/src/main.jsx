@@ -32,7 +32,6 @@ const router = createBrowserRouter([
               element: <Signup />
           },
           {
-
             path: "/profile",
             element: <Profile />
           },
