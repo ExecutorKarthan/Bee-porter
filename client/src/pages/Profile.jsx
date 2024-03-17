@@ -2,15 +2,13 @@ import { Link } from 'react-router-dom';
 import  Auth  from '../utils/auth';
 
 const Profile = () => {
-    // try{
+    let userData
     const token = Auth.getToken();
     if(!token){
         window.location.assign("/login")
     }
     else{
-        console.log(token)
-        const userData = Auth.getUser(token)
-        console.log(userData)
+        userData = Auth.getUser(token)
     }
     return (
         <>
