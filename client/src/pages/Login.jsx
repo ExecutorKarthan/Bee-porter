@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import { Link, useNavigation } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
-
 function Login(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
@@ -11,11 +10,12 @@ function Login(props) {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const mutationResponse = await login({
+      const {data} = await login({
         variables: { email: formState.email, password: formState.password },
       });
-      const token = mutationResponse.data.login.token;
+      const token = data.login.token;
       Auth.login(token);
+      
     } catch (e) {
       console.log(e);
     }
@@ -38,7 +38,7 @@ function Login(props) {
       <h2 className="heading">Login</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="form-group">
-          <label htmlFor="email">Email address:</label>
+          <label htmlFor="email">Email address: </label>
           <input
             className="input"
             placeholder="youremail@test.com"
@@ -49,7 +49,7 @@ function Login(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="pwd">Password:</label>
+          <label htmlFor="pwd">Password: </label>
           <input
             className="input"
             placeholder="******"
@@ -60,12 +60,14 @@ function Login(props) {
           />
         </div>
         {error ? <p className="error-text">The provided credentials are incorrect</p> : null}
-        <div className="flex-row flex-end">
+        <div className="container">
+		      <div className="text-center">
           <button type="submit" className="button">Submit</button>
+          </div>
         </div>
       </form>
     </div>
   );
 }
-
+// a;sldfkj
 export default Login;
