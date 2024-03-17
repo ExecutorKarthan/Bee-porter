@@ -21,7 +21,7 @@ function Signup(props) {
           zipcode: parseInt(formState.zipcode)
         },
       });
-      
+      console.log(data)
       Auth.login(data.addUser.token);
     } catch (e) {
       console.log(e);

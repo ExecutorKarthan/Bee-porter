@@ -30,7 +30,7 @@ class AuthService {
   login(idToken) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
-
+    //Change the view to the profile page
     window.location.assign('/profile');
   }
 

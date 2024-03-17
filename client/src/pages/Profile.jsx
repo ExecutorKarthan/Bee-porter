@@ -5,30 +5,14 @@ import  Auth  from '../utils/auth';
 
 const Profile = () => {
     const token = Auth.getToken();
-    console.log(token)
     const userData = Auth.getUser(token)
-    console.log(userData.data._id)
-    const { data } = useQuery(QUERY_USER, {
-        variables: {
-            id: userData.data._id,
-        }
-    }
-    );
-    let user;
-   
-    if(data) {
-        user = userData;
-    }
-    console.log(user)
+    console.log(userData)
     return (
         <>
-        <Link to="/">Back to home</Link>
-        {user} ? (
-            
-            <h2>
-                {user.firstName}'s Profile
-            </h2>
-        )
+        <Link to="/">Back to home</Link>   
+        <h2>
+        {userData.data.firstName} {userData.data.lastName}'s Profile
+        </h2>
         </>
     )
 }
