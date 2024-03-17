@@ -11,7 +11,8 @@ function Signup(props) {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const mutationResponse = await addUser({
+      console.log(formState);
+      const {data} = await addUser({
         variables: {
           email: formState.email,
           password: formState.password,
@@ -20,8 +21,7 @@ function Signup(props) {
           zipcode: parseInt(formState.zipcode)
         },
       });
-      const token = mutationResponse.data.addUser.token;
-      Auth.login(token);
+      Auth.login(data.addUser.token);
     } catch (e) {
       console.log(e);
     }

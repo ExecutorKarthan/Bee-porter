@@ -22,11 +22,8 @@ const typeDefs = `
   }
 
   type Query{
-    user(userID: ID!): User
-  }
-
-  type Query{
-    swarm(swarmID: ID!): Swarm
+    me(userId: ID!): User
+    swarm(swarmId: ID!): Swarm
   }
 
   type Mutation {
