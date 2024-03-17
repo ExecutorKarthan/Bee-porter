@@ -6,7 +6,7 @@ const resolvers = {
   //Create a mechanism to query data from the database
   Query: {
     me: async (parent, {userId}, context) => {
-      return User.findOne({_id: userId });
+      return User.findOne({_id: context.user._id });
     },
     
     swarm: async (parent, {swarmId}, context) => {
