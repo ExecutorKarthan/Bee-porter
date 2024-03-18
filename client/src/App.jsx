@@ -7,7 +7,6 @@ import {
   InMemoryCache,
   createHttpLink,
 } from '@apollo/client';
-import MapComponent from './components/mapComponent';
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
@@ -36,7 +35,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Nav />
-      <MapComponent /> 
       <Outlet />
       <Footer />
     </ApolloProvider>
