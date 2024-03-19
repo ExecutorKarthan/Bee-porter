@@ -57,8 +57,8 @@ const MapComponent = () => {
             
             // Create a new marker element
             const iconElement = document.createElement('div');
-            iconElement.className = 'custom-marker';
-            iconElement.style.backgroundColor = 'yellow'; 
+            //iconElement.className = 'custom-marker';
+            //iconElement.style.backgroundColor = 'yellow'; 
             iconElement.style.width = '25px'; 
             iconElement.style.height = '25px'; 
             

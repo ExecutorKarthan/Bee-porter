@@ -1,51 +1,70 @@
-//PLACEHOLDER FOR DATABASE NAME
 // Import necessary modules
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
+const { ApolloServer, gql } = require('apollo-server');
 
-// Define the handler function for the serverless function
-const handler = async (req, res) => {
-  try {
-    // Parse the request body to extract marker data
-    const { longitude, latitude } = req.body;
+// Define Mongoose schema&model for Marker
+const markerSchema = new mongoose.Schema({
+  longitude: {
+    type: Number,
+    required: true
+  },
+  latitude: {
+    type: Number,
+    required: true
+  }
+});
 
-    // Create MongoDB client and connect to database
-    const client = new MongoClient(process.env.MONGODB_URL);
-    await client.connect();
+const Marker = mongoose.model('Marker', markerSchema);
 
-    // Access database and markers collection
-    const db = client.db('DB-NAME-HERE'); // Placeholder for database name
-    const markersCollection = db.collection('markers');
+// Set up Mongoose connection
+mongoose.connect(process.env.MONGODB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log('Connected to MongoDB database');
+})
+.catch((error) => {
+  console.error('Error connecting to MongoDB database:', error);
+});
 
-    if (req.method === 'POST') {
-      // Insert marker data into markers collection
-      const result = await markersCollection.insertOne({ longitude, latitude });
-      const insertedMarker = result.ops[0];
-      
-      // Return a response with status code 200
-      res.status(200).json({
-        message: 'Marker added successfully',
-        marker: insertedMarker
-      });
-    } else if (req.method === 'GET') {
-      // Fetch all markers from the collection
-      const markers = await markersCollection.find({}).toArray();
-      
-      // Return a response with status code 200
-      res.status(200).json({
-        markers
-      });
+// Define GraphQL schema
+const typeDefs = gql`
+  type Marker {
+    _id: ID!
+    longitude: Float!
+    latitude: Float!
+  }
+
+  type Query {
+    markers: [Marker]!
+  }
+
+  type Mutation {
+    addMarker(longitude: Float!, latitude: Float!): Marker!
+  }
+`;
+
+// Define resolvers
+const resolvers = {
+  Query: {
+    markers: async () => {
+      return await Marker.find();
     }
-    
-    // Close the MongoDB client connection
-    await client.close();
-  } catch (error) {
-    // If an error occurs, return a response with status code 500
-    res.status(500).json({
-      error: 'Failed to process request',
-      details: error.message
-    });
+  },
+  Mutation: {
+    addMarker: async (_, { longitude, latitude }) => {
+      const marker = new Marker({ longitude, latitude });
+      await marker.save();
+      return marker;
+    }
   }
 };
 
-// Export the handler function
-module.exports = handler;
+// Create ApolloServer instance
+const server = new ApolloServer({ typeDefs, resolvers });
+
+// Start the server
+server.listen().then(({ url }) => {
+  console.log(`Server ready at ${url}`);
+});
