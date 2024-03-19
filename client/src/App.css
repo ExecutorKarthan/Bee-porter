@@ -4,6 +4,7 @@ body {
   background-color: #fbee5c; /* Bumblebee yellow */
   margin: 0;
   padding: 0;
+  padding-bottom: 200px;
   text-align: center; /* Center align text */
 }
 
@@ -25,6 +26,20 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+footer {
+  background-color: #2e2e2e;
+  color: white;
+  width: 100%;
+  padding-top: 1px;
+  padding-bottom: 5px;
+  position: fixed;
+  bottom: 0;
+}
+
+.donate-button {
+  text-decoration: underline;
 }
 
 .logo a {
