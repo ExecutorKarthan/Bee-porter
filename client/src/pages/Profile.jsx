@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import  Auth  from '../utils/auth';
 import { QUERY_USER } from '../utils/queries';
+import { UPDATE_EMAIL } from '../utils/mutations';
 import { useQuery } from '@apollo/client';
 
 const Profile = () => {

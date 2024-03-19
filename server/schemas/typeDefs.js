@@ -31,6 +31,7 @@ const typeDefs = `
     addUser(firstName: String!, lastName: String!, email: String!, password: String!, zipcode: Int!): Auth
     addSwarm(location: String!, description: String!, contactInfo: String!): Swarm
     removeSwarm(swarmId: ID!): Swarm
+    updateEmail(userId: ID!): Auth
   }  
 `;
 

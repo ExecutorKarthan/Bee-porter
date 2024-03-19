@@ -6,6 +6,7 @@ const resolvers = {
   //Create a mechanism to query data from the database
   Query: {
     me: async (parent, {userId}, context) => {
+      console.log(context.user._id)
       return User.findOne({_id: context.user._id });
     },
     
@@ -40,6 +41,13 @@ const resolvers = {
       const user = await User.create({ firstName, lastName, email, password, zipcode });
       const token = signToken(user);
       return { token, user };
+    },
+
+    updateEmail: async (parent, { email }, context) => {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $set: { email: email } }
+      );
     },
 
     // Add a third argument to the resolver to access data in our `context`

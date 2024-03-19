@@ -48,3 +48,10 @@ mutation removeSwarm($swarmId: ID!) {
         }
     }
 }`
+
+export const UPDATE_EMAIL = gql`
+mutation updateEmail($userId: ID!) {
+    updateEmail(userId: $userId) {
+        email
+    }
+}`
