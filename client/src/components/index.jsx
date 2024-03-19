@@ -1,4 +1,4 @@
-import Auth from "../../utils/auth";
+import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
 function Nav() {
@@ -37,14 +37,15 @@ function Nav() {
 
   return (
     <header className="flex-row px-1">
-      <h1>
+      <h1 className="logo">
         <Link to="/">
-          Bee-porter
+          BEE-PORTER
         </Link>
       </h1>
 
       <nav>
         {showNavigation()}
+        <img src="/assets/Bee-Logo.png " className="bee-logo-img"/> 
       </nav>
     </header>
   );
