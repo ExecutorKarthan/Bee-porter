@@ -12,6 +12,9 @@ function Nav() {
               Logout
             </a>
           </li>
+          <li>
+            <a href="/profile">My Profile</a>
+          </li>
         </ul>
       );
     } else {
