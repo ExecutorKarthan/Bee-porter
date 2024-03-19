@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_SWARM } from '../utils/queries';
 import MapComponent from '../components/mapComponent';
+import { useState } from 'react';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_SWARM, {

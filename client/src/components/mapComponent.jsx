@@ -26,7 +26,7 @@ const MapComponent = () => {
                     // Initialize map with location
                     const newMap = new mapboxgl.Map({
                         container: 'map',
-                        style: 'mapbox://styles/mapbox/navigation-night-v1',
+                        style: 'mapbox://styles/mapbox/dark-v11',
                         center: [longitude, latitude],
                         zoom: 9
                     });
@@ -58,7 +58,7 @@ const MapComponent = () => {
             // Create a new marker element
             const iconElement = document.createElement('div');
             iconElement.className = 'custom-marker';
-            iconElement.style.backgroundImage = 'url(/assets/Bee-porter-marker.jpg)';
+            iconElement.style.backgroundImage = 'url(../../../assets/Bee-porter-marker.jpg)';
             iconElement.style.width = '25px'; 
             iconElement.style.height = '25px'; 
             
