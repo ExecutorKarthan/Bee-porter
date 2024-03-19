@@ -10,8 +10,12 @@ const resolvers = {
     },
     
     swarm: async (parent, {swarmId}, context) => {
-      return User.findOne({_id: swarmId });
+      return Swarm.findOne({_id: swarmId });
     },
+
+    swarms: async () => {
+      return Swarm.findAll();
+    }
   },
 
   //Define mutations to adjust the data in the database
@@ -43,8 +47,8 @@ const resolvers = {
     },
 
     // Add a third argument to the resolver to access data in our `context`
-    addSwarm: async (parent, {location, description, contactInfo}, context) => {
-      const swarm = await Swarm.create({ location, description, contactInfo });
+    addSwarm: async (parent, {latitude, longitude, description, contactInfo}, context) => {
+      const swarm = await Swarm.create({ latitude, longitude, description, contactInfo });
       return { swarm }
     },
     // Make it so a logged in user can only remove a skill from their own profile
