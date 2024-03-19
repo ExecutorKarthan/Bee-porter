@@ -9,7 +9,7 @@ const handler = async (req, res) => {
     const { longitude, latitude } = req.body;
 
     // Create MongoDB client and connect to database
-    const client = new MongoClient(process.env.MONGODB_URI);
+    const client = new MongoClient(process.env.MONGODB_URL);
     await client.connect();
 
     // Access database and markers collection
