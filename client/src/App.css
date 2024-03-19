@@ -119,4 +119,7 @@ nav a:hover {
 button{
   margin: 5px;
   background-color: #2e2e2e !important;
+  color: white;
+  padding: 10px;
+  border-radius: 12%;
 }
