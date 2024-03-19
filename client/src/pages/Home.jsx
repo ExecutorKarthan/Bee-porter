@@ -40,9 +40,6 @@ const Home = () => {
         <div className="col-md-8 offset-md-2 text-center mt-5">
           <h2>Ready to report a new bee swarm?</h2>
           <MapComponent />
-          <Link to="/report" className="link">
-            <button className="button">Report Bee Swarm</button>
-          </Link>
         </div>
       </div>
     </div>

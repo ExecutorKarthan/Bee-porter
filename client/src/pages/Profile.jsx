@@ -29,6 +29,8 @@ const Profile = () => {
         <h2>
         {data.me.firstName} {data.me.lastName}'s Profile
         </h2>
+        <h3>Your email: {data.me.email}</h3>
+        <h3>Your home zipcode: {data.me.zipcode}</h3>
         </>
     )
 }
