@@ -24,7 +24,7 @@ const typeDefs = `
 
   type Query{
     me: User
-    swarm: [Swarm]
+    swarms: [Swarm]
     swarm(latitude: Float!, longitude: Float!): Swarm
   }
 

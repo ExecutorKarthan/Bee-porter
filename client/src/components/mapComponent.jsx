@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
+import { useMutation } from '@apollo/client';
+import { ADD_SWARM } from './utils/mutations'; 
 
 const MapComponent = () => {
     const [map, setMap] = useState(null);
     const [selectedMarker, setSelectedMarker] = useState(null);
     const [markers, setMarkers] = useState([]);
     const [markerInfo, setMarkerInfo] = useState({ name: '', description: '' });
+
+    const [addSwarm] = useMutation(ADD_SWARM);
 
     useEffect(() => {
         // Set access token
@@ -50,7 +54,7 @@ const MapComponent = () => {
 
     const saveSwarm = async () => {
         try { 
-            const {data} = await addUser({
+            const {data} = await addSwarm({
                 variables: {
                 latitude: selectedMarker.getLngLat().lat,
                 longitude: selectedMarker.getLngLat().lng,
@@ -58,18 +62,20 @@ const MapComponent = () => {
                 description: markerInfo.description
                 },
           });
-        } catch {
-            console.log(e);
+          console.log('Swarm saved:', data);
+        } catch (error) {
+            console.error('Error saving swarm:', error);
         }
+    };
 
 
     // Function to handle marking location
-    const handleMarkLocation = () => {
+    const handleMarkLocation = async () => {
         if (map) {
             // Get current coordinates of the center of the map
             const center = map.getCenter();
             
-            // Create a new marker element
+            // Create a new marker element with custom styling
             const iconElement = document.createElement('div');
             iconElement.className = 'custom-marker';
             iconElement.style.backgroundColor = 'yellow'; 
@@ -88,12 +94,29 @@ const MapComponent = () => {
             newMarker.getElement().addEventListener('click', () => {
                 setSelectedMarker(newMarker);
             });
+
+            // Store the marker in the state
             setMarkers([...markers, newMarker]);
-            
+
             // Store marker information
+            try {
+                await addSwarm({
+                    variables: {
+                        latitude: center.lat,
+                        longitude: center.lng,
+                        description: markerInfo.description
+                    }
+                });
+                saveSwarm();
+            } catch (error) {
+                console.error('Error adding marker:', error);
+            }
+            
+            // Clear marker information
             setMarkerInfo({ name: '', description: '' });
         }
-    };
+        };
+
 
     // Function to remove marker
     const handleRemoveMarker = () => {
@@ -106,14 +129,20 @@ const MapComponent = () => {
         }
     };
 
-    // Function to update marker information when input fields change
-    const handleMarkerInfoChange = (e) => {
-        const { name, value } = e.target;
-        setMarkerInfo(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
+        // Function to update marker information when input fields change
+        const handleMarkerInfoChange = (e) => {
+            const { name, value } = e.target;
+            if (name === 'description') {
+                // If changing the description field, update the markerInfo directly
+                setMarkerInfo({ ...markerInfo, description: value });
+            } else {
+                // If changing other fields, update the markerInfo state using prevState
+                setMarkerInfo(prevState => ({
+                    ...prevState,
+                    [name]: value
+                }));
+            }
+        };
 
     return (
         <div>
@@ -135,10 +164,9 @@ const MapComponent = () => {
                     />
                     <br />
                     <textarea
-                        name="description"
-                        value={markerInfo.description}
-                        onChange={handleMarkerInfoChange}
-                        placeholder="Description"
+                          value={markerInfo.description}
+                          onChange={handleMarkerInfoChange}
+                          placeholder="Description"
                     />
                     <br />
                     <button onClick={handleRemoveMarker}>Remove Swarm</button>
