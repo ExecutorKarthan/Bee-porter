@@ -28,8 +28,8 @@ mutation addUser($firstName: String!, $lastName: String!, $email: String!, $pass
 }`
 // GraphQL mutation for adding a new swarm
 export const ADD_SWARM = gql`
-mutation addSwarm($location: Float!, $description: String!, $contactInfo: String) {
-    addSwarm(location: $location, description: $description, contactInfo: $contactInfo) {
+mutation addSwarm($latitude: Float!, $longitude: Float!, $description: String!, $contactInfo: String) {
+    addSwarm(latitude: $latitude, longitude: $longitude, description: $description, contactInfo: $contactInfo) {
         swarmId
         location
         description
@@ -38,8 +38,8 @@ mutation addSwarm($location: Float!, $description: String!, $contactInfo: String
 }`
 // GraphQL mutation for removing a swarm
 export const REMOVE_SWARM = gql`
-mutation removeSwarm($swarmId: ID!) {
-    removeSwarm(swarmId: $swarmId) {
+mutation removeSwarm($latitude: Float!, $longitude: Float!) {
+    removeSwarm(latitude: $latitude, longitude: $longitude) {
         swarm {
             swarmId
             location

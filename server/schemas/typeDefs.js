@@ -11,7 +11,8 @@ const typeDefs = `
 
   type Swarm {
     _id: ID!
-    location: [Float]!
+    longitude: Float!
+    latitude: Float!
     description: String!
     contactInfo: String!
   }
@@ -23,14 +24,15 @@ const typeDefs = `
 
   type Query{
     me: User
-    swarm(swarmId: ID!): Swarm
+    swarm: [Swarm]
+    swarm(latitude: Float!, longitude: Float!): Swarm
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(firstName: String!, lastName: String!, email: String!, password: String!, zipcode: Int!): Auth
-    addSwarm(location: String!, description: String!, contactInfo: String!): Swarm
-    removeSwarm(swarmId: ID!): Swarm
+    addSwarm(location: String!, description: String!, contactInfo: String, latitude:Float!, longitude:Float!): Swarm
+    removeSwarm(latitude: Float!, longitude: Float!): Swarm
   }  
 `;
 

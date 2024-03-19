@@ -1,11 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const swarmSchema = new Schema({
-    location: {
-    // Unsure of what datatype the location will be
-        type: Array,
-        required: true,
-    },
     description: {
         type: String,
         required: true,
@@ -13,6 +8,14 @@ const swarmSchema = new Schema({
     contactInfo: {
         type: String
     },
+    longitude: {
+        type: Number,
+        required: true
+    },
+    latitude: {
+        type: Number,
+        required: true
+    }
 });
 
 

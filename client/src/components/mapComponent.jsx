@@ -17,7 +17,6 @@ const MapComponent = () => {
                 console.error('Geolocation is not supported by your browser');
                 return;
             }
-            
             // Get user location
             navigator.geolocation.getCurrentPosition(
                 (position) => {
@@ -49,6 +48,21 @@ const MapComponent = () => {
 
     }, [map]);
 
+    const saveSwarm = async () => {
+        try { 
+            const {data} = await addUser({
+                variables: {
+                latitude: selectedMarker.getLngLat().lat,
+                longitude: selectedMarker.getLngLat().lng,
+                name: markerInfo.name,
+                description: markerInfo.description
+                },
+          });
+        } catch {
+            console.log(e);
+        }
+
+
     // Function to handle marking location
     const handleMarkLocation = () => {
         if (map) {
@@ -57,8 +71,8 @@ const MapComponent = () => {
             
             // Create a new marker element
             const iconElement = document.createElement('div');
-            //iconElement.className = 'custom-marker';
-            //iconElement.style.backgroundColor = 'yellow'; 
+            iconElement.className = 'custom-marker';
+            iconElement.style.backgroundColor = 'yellow'; 
             iconElement.style.width = '25px'; 
             iconElement.style.height = '25px'; 
             
