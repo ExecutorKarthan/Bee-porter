@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-
+// GraphQL mutation for user login
 export const LOGIN = gql`
 mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -12,7 +12,7 @@ mutation login($email: String!, $password: String!) {
         }
     }
 }`
-
+// GraphQL mutation for adding a new user
 export const ADD_USER = gql`
 mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $zipcode: Int!) {
     addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, zipcode: $zipcode) {
@@ -26,7 +26,7 @@ mutation addUser($firstName: String!, $lastName: String!, $email: String!, $pass
         }
     }
 }`
-
+// GraphQL mutation for adding a new swarm
 export const ADD_SWARM = gql`
 mutation addSwarm($location: Float!, $description: String!, $contactInfo: String) {
     addSwarm(location: $location, description: $description, contactInfo: $contactInfo) {
@@ -36,7 +36,7 @@ mutation addSwarm($location: Float!, $description: String!, $contactInfo: String
         contactInfo
     }
 }`
-
+// GraphQL mutation for removing a swarm
 export const REMOVE_SWARM = gql`
 mutation removeSwarm($swarmId: ID!) {
     removeSwarm(swarmId: $swarmId) {
