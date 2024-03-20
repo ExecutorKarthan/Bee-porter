@@ -18,14 +18,18 @@ const server = new ApolloServer({
   resolvers,
 });
 
-
+// Serve static files from the 'public' directory
 app.use(express.static('public'));
-
+// Define domain for use in the checkout session
 const YOUR_DOMAIN = 'https://bee-porter-1.onrender.com';
 
+// Handle POST request to create checkout session
 app.post('/create-checkout-session', async (req, res) => {
+  // Create checkout session with Stripe
   const session = await stripe.checkout.sessions.create({
+    // Specify submit type as donate
     submit_type: 'donate',
+    // Price ID and quanity of the donation
     line_items: [
       {
         price: 'price_1OuObF2MpQzms5MHNpLPuv9q',
@@ -33,10 +37,11 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'payment',
+    // Redirect URLs after successful or cancelled payments
     success_url: `${YOUR_DOMAIN}/success`,
     cancel_url: YOUR_DOMAIN,
   });
-
+  // Redirect user to the checkout session URL
   res.redirect(303, session.url);
 });
 

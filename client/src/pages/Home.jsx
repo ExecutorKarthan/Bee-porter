@@ -4,10 +4,12 @@ import { GET_SWARMS } from '../utils/queries';
 import MapComponent from '../components/mapComponent';
 
 const Home = () => {
+  // Query data for bee swarms
   const { loading, data } = useQuery(GET_SWARMS, {
     fetchPolicy: 'no-cache'
   });
 
+  // Extract swarm list from the query result
   const swarmList = data?.swarms || [];
 
   return (
