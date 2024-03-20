@@ -46,14 +46,14 @@ const resolvers = {
       return { token, user };
     },
 
-    // Add a third argument to the resolver to access data in our `context`
+    //Add a resolver to add swarms to the database
     addSwarm: async (parent, {latitude, longitude, description, contactInfo}, context) => {
       const swarm = await Swarm.create({ latitude, longitude, description, contactInfo });
       return swarm 
     },
-    // Make it so a logged in user can only remove a skill from their own profile
-    removeSwarm: async (parent, { swarmId }, context) => {
-      return await Swarm.findOneAndDelete({_id: swarmId});
+    // Remove a swarm from the database
+    removeSwarm: async (parent, { latitude, longitude}, context) => {
+      return await Swarm.findOneAndDelete({latitude, longitude });
       },
     updateEmail: async (parent, { email }, context) => {
       const updatedUser = await User.findOneAndUpdate(
