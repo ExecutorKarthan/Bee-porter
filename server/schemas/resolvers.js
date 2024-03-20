@@ -55,6 +55,11 @@ const resolvers = {
     removeSwarm: async (parent, { latitude, longitude}, context) => {
       return await Swarm.findOneAndDelete({latitude, longitude });
       },
+    updateEmail: async (parent, { email }, context) => {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user._id},
+        { $set: {email: email } });
+    },
   },
 };
 
