@@ -33,6 +33,7 @@ const typeDefs = `
     addUser(firstName: String!, lastName: String!, email: String!, password: String!, zipcode: Int!): Auth
     addSwarm(latitude:Float!, longitude:Float!, description: String!, contactInfo: String!): Swarm
     removeSwarm(latitude: Float!, longitude: Float!): Swarm
+    updateEmail(email: String!): User
   }  
 `;
 

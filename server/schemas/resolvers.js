@@ -55,6 +55,11 @@ const resolvers = {
     removeSwarm: async (parent, { swarmId }, context) => {
       return await Swarm.findOneAndDelete({_id: swarmId});
       },
+    updateEmail: async (parent, { email }, context) => {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user._id},
+        { $set: {email: email } });
+    },
   },
 };
 
