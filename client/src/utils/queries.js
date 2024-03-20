@@ -16,7 +16,8 @@ export const QUERY_SWARM = gql`
 query swarm {
     swarm {
         _id
-        location
+        latitude
+        longitude
         description
         contactInfo
     }
