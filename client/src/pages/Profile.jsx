@@ -4,23 +4,29 @@ import { QUERY_USER } from '../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
 import { UPDATE_EMAIL } from '../utils/mutations';
 import { useState } from 'react';
+
+
 const Profile = () => {
-    
+    // Check if user is logged in
     if (!Auth.loggedIn()) {
+        // Redirect to home if not logged in
         window.location.assign('/');
-      }
+    }
+
+    // State and mutation hooks
     const [updateEmail] = useMutation(UPDATE_EMAIL);
     const [email, setEmail] = useState({email: ''});
-
+    // Query to get user data
     const { loading, data } = useQuery(QUERY_USER);
     
-
+    // Function to handle text input change
     const handleTextChange = (e) => {
         const currentEmail = e.target.value;
         setEmail(currentEmail);
         console.log(currentEmail);
     };
 
+    // Function to save updated email
     const saveEmail = async () => {
         try {
             const {data} = await updateEmail({
@@ -31,10 +37,12 @@ const Profile = () => {
             console.error(err);
         }
     }
+    // Loading indicator
     if (loading) {
         return <div>Loading...</div>;
-      }
+    }
 
+    // If user data is not available, prompt user to login/signup
     if (!data?.me) {
         return (
         <h4>
