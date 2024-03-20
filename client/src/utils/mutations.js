@@ -40,10 +40,8 @@ mutation addSwarm($latitude: Float!, $longitude: Float!, $description: String!, 
 export const REMOVE_SWARM = gql`
 mutation removeSwarm($latitude: Float!, $longitude: Float!) {
     removeSwarm(latitude: $latitude, longitude: $longitude) {
-        swarm {
-            _id
-            description
-            contactInfo
-        }
+        _id
+        description
+        contactInfo
     }
 }`

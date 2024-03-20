@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { useMutation, useQuery } from '@apollo/client';
-import { ADD_SWARM } from '../utils/mutations'; 
+import { ADD_SWARM, REMOVE_SWARM} from '../utils/mutations'; 
 import { GET_SWARMS } from '../utils/queries';
 
 const MapComponent = () => {
@@ -11,6 +11,7 @@ const MapComponent = () => {
     const [markers, setMarkers] = useState([]);
     const [markerInfo, setMarkerInfo] = useState({ name: '', description: '' });
     const [addSwarm] = useMutation(ADD_SWARM);
+    const [removeSwarm] = useMutation(REMOVE_SWARM);
 
     useEffect(() => {
         // Set access token
@@ -93,30 +94,10 @@ const MapComponent = () => {
 
             // Store the marker in the state
             setMarkers([...markers, newMarker]);
-
-            // Store marker information
-            try {
-                await addSwarm({
-                    variables: {
-                        latitude: center.lat,
-                        longitude: center.lng,
-                        description: markerInfo.description
-                    }
-                });
-            } catch (error) {
-                console.error('Error adding marker:', error);
-            }
-            
-            // Clear marker information
-            setMarkerInfo({ name: '', description: '' });
         }
         };
 
     const handleSaveSwarm = async () => {
-        console.log(selectedMarker.getLngLat().lat)
-        console.log(selectedMarker.getLngLat().lng)
-        console.log(markerInfo.name)
-        console.log(markerInfo.description)
         try { 
             const {data} = await addSwarm({
                 variables: {
@@ -126,14 +107,24 @@ const MapComponent = () => {
                     description: markerInfo.description
                 },
             });
-            console.log('Swarm saved:', data);
+            setMarkerInfo({ name: '', description: '' });
         } catch (error) {
             console.error('Error saving swarm:', error);
         }
     };
 
     // Function to remove marker
-    const handleRemoveMarker = () => {
+    const handleRemoveMarker = async () => {
+        try { 
+            const {data} = await removeSwarm({
+                variables: {
+                    latitude: parseFloat(selectedMarker.getLngLat().lat),
+                    longitude: parseFloat(selectedMarker.getLngLat().lng),
+                },
+            });
+        } catch (error) {
+            console.error('Error deleting swarm:', error);
+        }
         if (selectedMarker) {
             selectedMarker.remove();
             setSelectedMarker(null);

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_SWARM } from '../utils/queries';
+import { GET_SWARMS } from '../utils/queries';
 import MapComponent from '../components/mapComponent';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_SWARM, {
+  const { loading, data } = useQuery(GET_SWARMS, {
     fetchPolicy: 'no-cache'
   });
 
@@ -19,7 +19,7 @@ const Home = () => {
       <div className="row">
         <div className="col-md-8 offset-md-2">
           <h2>Here is a list of bee swarms you can explore:</h2>
-          {loading ? (
+          {/* {loading ? (
             <div>Loading...</div>
           ) : (
             <ul className="list-group">
@@ -33,7 +33,7 @@ const Home = () => {
                 );
               })}
             </ul>
-          )}
+          )} */}
         </div>
       </div>
       <div className="row">
