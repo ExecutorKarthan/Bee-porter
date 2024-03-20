@@ -14,7 +14,7 @@ const resolvers = {
     },
 
     swarms: async () => {
-      return Swarm.findAll();
+      return Swarm.find();
     }
   },
 
@@ -49,7 +49,7 @@ const resolvers = {
     // Add a third argument to the resolver to access data in our `context`
     addSwarm: async (parent, {latitude, longitude, description, contactInfo}, context) => {
       const swarm = await Swarm.create({ latitude, longitude, description, contactInfo });
-      return { swarm }
+      return swarm 
     },
     // Make it so a logged in user can only remove a skill from their own profile
     removeSwarm: async (parent, { swarmId }, context) => {
