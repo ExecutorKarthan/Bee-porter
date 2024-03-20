@@ -47,3 +47,10 @@ mutation removeSwarm($latitude: Float!, $longitude: Float!) {
         }
     }
 }`
+
+export const UPDATE_EMAIL = gql`
+mutation updateEmail($email: String!) {
+    updateEmail(email: $email) {
+        email
+    }
+}`
