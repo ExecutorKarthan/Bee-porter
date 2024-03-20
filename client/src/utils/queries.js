@@ -22,3 +22,15 @@ query swarm {
         contactInfo
     }
 }`
+
+export const GET_SWARMS = gql`
+  query GetSwarms {
+    swarms {
+      _id
+      latitude
+      longitude
+      description
+      contactInfo
+    }
+  }
+`;

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_SWARM } from '../utils/mutations'; 
+import { GET_SWARMS } from '../utils/queries';
 
 const MapComponent = () => {
     const [map, setMap] = useState(null);
+    const { data } = useQuery(GET_SWARMS);
     const [selectedMarker, setSelectedMarker] = useState(null);
     const [markers, setMarkers] = useState([]);
     const [markerInfo, setMarkerInfo] = useState({ name: '', description: '' });
@@ -14,7 +16,7 @@ const MapComponent = () => {
         // Set access token
         mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
-        const initializeMap = () => {
+        const initializeMap = async () => {
             // Check if geolocation is available
             if (!navigator.geolocation) {
                 console.error('Geolocation is not supported by your browser');
@@ -50,6 +52,18 @@ const MapComponent = () => {
         }
 
     }, [map]);
+
+    useEffect(() => {
+        if (map && data && data.swarms) {
+            // Add markers to the map
+            data.swarms.forEach(swarm => {
+                const marker = new mapboxgl.Marker()
+                    .setLngLat([swarm.longitude, swarm.latitude])
+                    .addTo(map);
+                    setMarkers(prevMarkers => [...prevMarkers, marker]);
+                });
+            }
+        }, [map, data]);
 
     // Function to handle marking location
     const handleMarkLocation = async () => {
@@ -89,7 +103,6 @@ const MapComponent = () => {
                         description: markerInfo.description
                     }
                 });
-                saveSwarm();
             } catch (error) {
                 console.error('Error adding marker:', error);
             }
